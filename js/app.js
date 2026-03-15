@@ -32,6 +32,37 @@ const AUDIO_MAP = {
 
 const AUDIO_BASE = "https://github.com/krishnareddypadala/padala-law/releases/download/audio-property-en/";
 
+// Infographic image map — keyed as "paperId:ui:ti"
+const IMAGE_MAP = {
+  // Unit 1: Concept of Property and General Principles
+  "property:0:0": "q1_property_definition.png",
+  "property:0:1": "q2_general_principles.png",
+  "property:0:2": "q3_restraints_alienation.png",
+  "property:0:3": "q4_vested_contingent.png",
+  "property:0:4": "q5_lis_pendens.png",
+  "property:0:5": "q6_election.png",
+  // Unit 2: Doctrines, Covenants, and Sale
+  "property:1:0": "q7_feeding_grant.png",
+  "property:1:1": "q8_covenants.png",
+  "property:1:2": "q9_sale.png",
+  // Unit 3: Mortgage, Lease, and Gift
+  "property:2:0": "q10_mortgage.png",
+  "property:2:1": "q11_gift.png",
+  "property:2:2": "q12_lease.png",
+  // Unit 4: Easements, Exchange, and Actionable Claims
+  "property:3:0": "q13_easements.png",
+  "property:3:1": "q14_actionable_claims.png",
+  "property:3:2": "q15_exchange.png",
+  // Part C: Problem Questions
+  "property:4:1": "p2_restraints_alienation.png",
+  "property:4:2": "p3_mortgage_accession.png",
+  "property:4:3": "p4_revocable_gifts.png",
+  "property:4:4": "p5_lis_pendens.png",
+  "property:4:5": "p6_easement_prescription.png",
+};
+
+const IMAGE_BASE = "https://github.com/krishnareddypadala/padala-law/releases/download/images-property-en/";
+
 (function () {
   const $ = s => document.querySelector(s);
 
@@ -248,6 +279,21 @@ const AUDIO_BASE = "https://github.com/krishnareddypadala/padala-law/releases/do
       html += `<h1>${esc(topic.title)}</h1>`;
 
       html += `<div class="content-body">${fmt(topic.content)}</div>`;
+
+      // Infographic section
+      const imageKey = state.paper + ":" + state.unitIdx + ":" + state.topicIdx;
+      const imageFile = IMAGE_MAP[imageKey];
+      if (imageFile) {
+        const imageUrl = IMAGE_BASE + imageFile;
+        html += `<div class="infographic-section">
+          <div class="cases-label">🖼 Visual Summary — NotebookLM Infographic</div>
+          <div class="infographic-card">
+            <img src="${imageUrl}" alt="Infographic: ${esc(topic.title)}" class="infographic-img" loading="lazy" onclick="this.classList.toggle('infographic-fullscreen')">
+            <p class="infographic-hint">Tap image to enlarge</p>
+            <a class="download-btn" href="${imageUrl}" download="${imageFile}">⬇ Download Infographic</a>
+          </div>
+        </div>`;
+      }
 
       // Audio section
       const audioKey = state.paper + ":" + state.unitIdx + ":" + state.topicIdx;
