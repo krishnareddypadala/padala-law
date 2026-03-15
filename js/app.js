@@ -1,4 +1,36 @@
 // padala.law — Application logic (v2 — unit-aware)
+
+// Audio map: property law English — keyed as "paperId:ui:ti"
+const AUDIO_MAP = {
+  // Unit 1: Concept of Property and General Principles
+  "property:0:0": { en: "The_Invisible_Architecture_of_Property_Rights.m4a",    title: "The Invisible Architecture of Property Rights" },
+  "property:0:1": { en: "Why_you_cannot_sell_a_ghost.m4a",                      title: "Why You Cannot Sell a Ghost" },
+  "property:0:2": { en: "Can_Sellers_Legally_Control_Your_Property_.m4a",       title: "Can Sellers Legally Control Your Property?" },
+  "property:0:3": { en: "Vested_interests_and_the_lis_pendens_trap.m4a",        title: "Vested Interests and the Lis Pendens Trap" },
+  "property:0:4": { en: "Losing_your_home_to_hidden_lawsuits.m4a",              title: "Losing Your Home to Hidden Lawsuits" },
+  "property:0:5": { en: "Section_35_and_the_Doctrine_of_Election.m4a",          title: "Section 35 and the Doctrine of Election" },
+  // Unit 2: Doctrines, Covenants, and Sale
+  "property:1:0": { en: "When_Property_Ownership_Lies_Become_Binding.m4a",      title: "When Property Ownership Lies Become Binding" },
+  "property:1:1": { en: "How_restrictive_covenants_run_with_land.m4a",          title: "How Restrictive Covenants Run with Land" },
+  "property:1:2": { en: "Section_54_Survival_Guide_for_Property_Buyers.m4a",    title: "Section 54 Survival Guide for Property Buyers" },
+  // Unit 3: Mortgage, Lease, and Gift
+  "property:2:0": { en: "Six_Legal_Types_of_Property_Mortgages.m4a",            title: "Six Legal Types of Property Mortgages" },
+  "property:2:1": { en: "Why_Indian_Law_Rejects_Revocable_Gifts.m4a",           title: "Why Indian Law Rejects Revocable Gifts" },
+  "property:2:2": { en: "The_Law_of_Leases_and_Licenses.m4a",                   title: "The Law of Leases and Licenses" },
+  // Unit 4: Easements, Exchange, and Actionable Claims
+  "property:3:0": { en: "Legal_rights_to_land_you_don_t_own.m4a",               title: "Legal Rights to Land You Don't Own" },
+  "property:3:1": { en: "Selling_Actionable_Claims_Under_Section_130.m4a",      title: "Selling Actionable Claims Under Section 130" },
+  "property:3:2": { en: "Section_118_Property_Exchanges_and_Restitution.m4a",   title: "Section 118 Property Exchanges and Restitution" },
+  // Part C: Problem Questions
+  "property:4:0": { en: "Can_you_sell_your_future_inheritance.m4a",             title: "Can You Sell Your Future Inheritance?" },
+  "property:4:2": { en: "Can_your_lender_claim_your_new_house.m4a",             title: "Can Your Lender Claim Your New House?" },
+  "property:4:3": { en: "Why_Deathbed_Property_Gifts_Fail.m4a",                 title: "Why Deathbed Property Gifts Fail" },
+  "property:4:4": { en: "How_a_hidden_lawsuit_takes_your_home.m4a",             title: "How a Hidden Lawsuit Takes Your Home" },
+  "property:4:5": { en: "Invisible_Architecture_of_Indian_Property_Law.m4a",    title: "Invisible Architecture of Indian Property Law" },
+};
+
+const AUDIO_BASE = "https://github.com/krishnareddypadala/padala-law/releases/download/audio-property-en/";
+
 (function () {
   const $ = s => document.querySelector(s);
 
@@ -216,11 +248,27 @@
 
       html += `<div class="content-body">${fmt(topic.content)}</div>`;
 
-      // Audio placeholder
-      html += `<div class="media-placeholder" id="audio-area">
-        <div class="title">🎧 Audio study material</div>
-        <div class="sub">Place .mp3 in /audio/${paper.id}/ to enable</div>
-      </div>`;
+      // Audio section
+      const audioKey = state.paper + ":" + state.unitIdx + ":" + state.topicIdx;
+      const audioEntry = AUDIO_MAP[audioKey];
+      if (audioEntry) {
+        const audioUrl = AUDIO_BASE + audioEntry.en;
+        html += `<div class="audio-section">
+          <div class="cases-label">🎧 Audio Overview — English</div>
+          <div class="audio-card-full">
+            <div class="audio-title">${audioEntry.title}</div>
+            <audio controls preload="none" src="${audioUrl}" style="width:100%;margin:8px 0 10px"></audio>
+            <a class="download-btn" href="${audioUrl}" download="${audioEntry.en}">
+              ⬇ Download MP3
+            </a>
+          </div>
+        </div>`;
+      } else {
+        html += `<div class="media-placeholder">
+          <div class="title">🎧 Audio coming soon</div>
+          <div class="sub">Audio for this topic will be added shortly</div>
+        </div>`;
+      }
 
       // Video placeholder
       html += `<div class="media-placeholder" id="video-area">
@@ -242,36 +290,6 @@
     html += `</div>`; // app
 
     document.getElementById("app").innerHTML = html;
-
-    if (!state.searchMode) loadMedia(paper.id, state.unitIdx, state.topicIdx);
-  }
-
-  function loadMedia(pid, ui, ti) {
-    const audioPath = `audio/${pid}/u${ui}_t${ti}.mp3`;
-    fetch(audioPath, { method: "HEAD" }).then(r => {
-      if (r.ok && document.getElementById("audio-area")) {
-        document.getElementById("audio-area").innerHTML = `
-          <div class="audio-section">
-            <div class="cases-label">🎧 Audio</div>
-            <div class="audio-card">
-              <audio controls preload="none" src="${audioPath}" style="width:100%"></audio>
-            </div>
-          </div>`;
-      }
-    }).catch(() => {});
-
-    const videoPath = `video/${pid}/u${ui}_t${ti}.mp4`;
-    fetch(videoPath, { method: "HEAD" }).then(r => {
-      if (r.ok && document.getElementById("video-area")) {
-        document.getElementById("video-area").innerHTML = `
-          <div class="video-section">
-            <div class="cases-label">🎬 Video</div>
-            <div class="video-card">
-              <video controls preload="none" src="${videoPath}" style="width:100%"></video>
-            </div>
-          </div>`;
-      }
-    }).catch(() => {});
   }
 
   // ── Public API ────────────────────────────────────────────────────────────

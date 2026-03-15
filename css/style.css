@@ -477,19 +477,41 @@ body {
   margin-top: 4px;
 }
 
-/* Audio player (for when files are added) */
-.audio-section { margin: 24px 0; }
-.audio-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+/* Audio player */
+.audio-section { margin: 28px 0; }
+.audio-card-full {
+  padding: 16px 18px;
   background: var(--bg-secondary);
-  border-radius: var(--radius);
-  margin-bottom: 8px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
 }
-.audio-card audio { flex: 1; height: 36px; }
-.audio-label { font-size: 13px; font-weight: 500; min-width: 120px; }
+.audio-title {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--sans);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-family: var(--sans);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 5px 12px;
+  background: var(--bg-primary);
+  transition: all 0.15s;
+}
+.download-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-mid);
+  color: var(--text-primary);
+}
 
 /* Video section */
 .video-section { margin: 24px 0; }
