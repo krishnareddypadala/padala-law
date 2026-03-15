@@ -179,6 +179,11 @@ const IMAGE_BASE = "https://github.com/krishnareddypadala/padala-law/releases/do
 
     let html = `<div class="app">`;
 
+    // Mobile backdrop — closes sidebar when tapping outside
+    if (state.sidebar) {
+      html += `<div class="sidebar-backdrop" onclick="app.toggleSidebar()"></div>`;
+    }
+
     // ── Sidebar ──────────────────────────────────────────────────────────
     html += `<div class="sidebar ${state.sidebar ? "" : "collapsed"}">`;
     html += `<div class="sidebar-header">
@@ -351,6 +356,8 @@ const IMAGE_BASE = "https://github.com/krishnareddypadala/padala-law/releases/do
     },
     selectTopic(ui, ti) {
       state.unitIdx = ui; state.topicIdx = ti;
+      // Auto-close sidebar on mobile after selecting a topic
+      if (window.innerWidth <= 768) state.sidebar = false;
       render();
       const el = document.getElementById("contentScroll");
       if (el) el.scrollTop = 0;
