@@ -59,9 +59,22 @@ const IMAGE_MAP = {
   "property:4:3": "p4_revocable_gifts.png",
   "property:4:4": "p5_lis_pendens.png",
   "property:4:5": "p6_easement_prescription.png",
+  // Paper 2: Labour & Industrial Law
+  "labour:0:0": "q1_laissez_faire.png",
+  "labour:0:1": "q2_trade_unionism.png",
+  "labour:0:2": "q3_trade_union.png",
+  "labour:0:3": "q4_strike_lockout.png",
+  "labour:0:4": "q5_collective_bargaining.png",
+  "labour:0:5": "q6_dispute_settlement.png",
+  "labour:0:6": "q7_layoff_retrenchment.png",
+  "labour:0:7": "q8_standing_orders.png",
+  "labour:0:8": "q9_domestic_enquiry.png",
 };
 
-const IMAGE_BASE = "https://github.com/krishnareddypadala/padala-law/releases/download/images-property-en/";
+const IMAGE_BASES = {
+  "property": "https://github.com/krishnareddypadala/padala-law/releases/download/images-property-en/",
+  "labour": "images/labour/",
+};
 
 (function () {
   const $ = s => document.querySelector(s);
@@ -289,7 +302,7 @@ const IMAGE_BASE = "https://github.com/krishnareddypadala/padala-law/releases/do
       const imageKey = state.paper + ":" + state.unitIdx + ":" + state.topicIdx;
       const imageFile = IMAGE_MAP[imageKey];
       if (imageFile) {
-        const imageUrl = IMAGE_BASE + imageFile;
+        const imageUrl = (IMAGE_BASES[state.paper] || IMAGE_BASES["property"]) + imageFile;
         html += `<div class="infographic-section">
           <div class="cases-label">🖼 Visual Summary — NotebookLM Infographic</div>
           <div class="infographic-card">
