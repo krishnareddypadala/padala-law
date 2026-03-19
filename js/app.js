@@ -28,22 +28,9 @@ const AUDIO_MAP = {
   "property:4:3": { en: "Why_Deathbed_Property_Gifts_Fail.m4a",                 title: "Why Deathbed Property Gifts Fail" },
   "property:4:4": { en: "How_a_hidden_lawsuit_takes_your_home.m4a",             title: "How a Hidden Lawsuit Takes Your Home" },
   "property:4:5": { en: "Invisible_Architecture_of_Indian_Property_Law.m4a",    title: "Invisible Architecture of Indian Property Law" },
-  // Paper 2: Labour & Industrial Law
-  "labour:0:0": { en: "q1_en.mp3", te: "q1_te.mp3", title: "Laissez Faire to Welfare State" },
-  "labour:0:1": { en: "q2_en.mp3", te: "q2_te.mp3", title: "Labour Movement & Trade Unionism" },
-  "labour:0:2": { en: "q3_en.mp3", te: "q3_te.mp3", title: "Trade Union Registration, Rights & Cancellation" },
-  "labour:0:3": { en: "q4_en.mp3", te: "q4_te.mp3", title: "Strike & Lockout" },
-  "labour:0:4": { en: "q5_en.mp3", te: "q5_te.mp3", title: "Collective Bargaining" },
-  "labour:0:5": { en: "q6_en.mp3", te: "q6_te.mp3", title: "Industry & Dispute Settlement" },
-  "labour:0:6": { en: "q7_en.mp3", te: "q7_te.mp3", title: "Lay-off, Retrenchment & Closure" },
-  "labour:0:7": { en: "q8_en.mp3", te: "q8_te.mp3", title: "Standing Orders Act 1946" },
-  "labour:0:8": { en: "q9_en.mp3", te: "q9_te.mp3", title: "Disciplinary Proceedings & Domestic Enquiry" },
 };
 
-const AUDIO_BASES = {
-  "property": "https://github.com/krishnareddypadala/padala-law/releases/download/audio-property-en/",
-  "labour": "audio/labour/",
-};
+const AUDIO_BASE = "https://github.com/krishnareddypadala/padala-law/releases/download/audio-property-en/";
 
 // Infographic image map — keyed as "paperId:ui:ti"
 const IMAGE_MAP = {
@@ -330,26 +317,15 @@ const IMAGE_BASES = {
       const audioKey = state.paper + ":" + state.unitIdx + ":" + state.topicIdx;
       const audioEntry = AUDIO_MAP[audioKey];
       if (audioEntry) {
-        const base = AUDIO_BASES[state.paper] || AUDIO_BASES["property"];
+        const audioUrl = AUDIO_BASE + audioEntry.en;
         html += `<div class="audio-section">
-          <div class="cases-label">🎧 Audio Overview</div>`;
-        if (audioEntry.en) {
-          const enUrl = base + audioEntry.en;
-          html += `<div class="audio-card-full">
-            <div class="audio-title">🇬🇧 English — ${audioEntry.title}</div>
-            <audio controls preload="none" src="${enUrl}" style="width:100%;margin:8px 0 10px"></audio>
-            <a class="download-btn" href="${enUrl}" download="${audioEntry.en}">⬇ Download English MP3</a>
-          </div>`;
-        }
-        if (audioEntry.te) {
-          const teUrl = base + audioEntry.te;
-          html += `<div class="audio-card-full" style="margin-top:12px">
-            <div class="audio-title">🇮🇳 తెలుగు — ${audioEntry.title}</div>
-            <audio controls preload="none" src="${teUrl}" style="width:100%;margin:8px 0 10px"></audio>
-            <a class="download-btn" href="${teUrl}" download="${audioEntry.te}">⬇ Download Telugu MP3</a>
-          </div>`;
-        }
-        html += `</div>`;
+          <div class="cases-label">🎧 Audio Overview</div>
+          <div class="audio-card-full">
+            <div class="audio-title">${audioEntry.title}</div>
+            <audio controls preload="none" src="${audioUrl}" style="width:100%;margin:8px 0 10px"></audio>
+            <a class="download-btn" href="${audioUrl}" download="${audioEntry.en}">⬇ Download MP3</a>
+          </div>
+        </div>`;
       } else {
         html += `<div class="media-placeholder">
           <div class="title">🎧 Audio coming soon</div>
