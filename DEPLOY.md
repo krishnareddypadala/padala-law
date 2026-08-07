@@ -96,8 +96,22 @@ the player rebuilds itself from it.
 - Tap a topic to play its Telugu audio (legal terms in English)
 - 📊 opens that topic's revision infographic full-screen
 - Auto-advances to the next topic when one ends
-- Remembers your last subject between visits
 - Works offline-ish: audio streams progressively, so playback starts fast
+
+### Progress tracking (localStorage, per device/browser)
+
+- Saves your playback position every 5 seconds, plus on pause, tab-switch and close
+- Reopening the site shows a **"Continue where you left off"** banner at the top
+- Tapping a part-played topic resumes at the exact second you stopped
+- An episode is marked **✓ completed** at 92% listened (skips the outro) or on finish
+- Each topic card shows a progress bar and "43% listened · resume at 6:12"
+- Each subject tab shows "4 / 10 done"; the footer shows the overall count
+- Playback speed (0.75× – 2×) is remembered too
+- "reset progress" in the player bar clears everything after a confirm
+
+Stored under keys `padala.progress.v1` (per-episode) and `padala.state.v1` (last
+episode, subject, speed). Nothing leaves the device — no server, no real cookies,
+so nothing is sent with every request. Progress does not sync across devices.
 
 ## Audio specs
 
