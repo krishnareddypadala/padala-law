@@ -22,3 +22,9 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
   dialog has "Generate later / Generate now" buttons and an AI-usage meter. Limit resets
   every ~5 hours (banner said "resets at 7:21").
 - Practical throughput: ~20 episodes/night on Pro, 2 in flight at a time, ~10-17 min each.
+- **Queueing past the limit**: when an account is out of quota the Customise dialog offers *Generate later*
+  instead of *Generate now*; the item shows as "Scheduled for after 7am" and NotebookLM runs it by
+  itself when the limit resets. Queue the whole batch this way, then rename/download in the morning.
+- Prompts can be pasted with the native value setter + `input` event; the Audio Overview tile,
+  language option, Generate and menu items are reliably clickable by coordinate computed from
+  getBoundingClientRect (JS `.click()` opens menus on the wrong row — avoid it).
