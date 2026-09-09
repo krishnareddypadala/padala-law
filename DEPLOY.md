@@ -90,6 +90,14 @@ the player rebuilds itself from it.
 
 ---
 
+## Site structure since Sep 2026
+
+- `data.js` now groups subjects under `SEMESTERS` (IV and V). `SUBJECTS` is still exported as a flat list.
+- Subjects with `notes:true` get a 📝 button per episode; content comes from `notes/<id>.js`
+  (build with `node sem5-pipeline/build/notes_html.js <id>`).
+- Subjects with `en:true` show a Telugu ⇄ English toggle; English files are `story-NN-en.m4a`.
+- Missing audio is detected automatically (one HEAD request per subject) and shown as "audio coming soon".
+
 ## What the site does
 
 - Tab across the five subjects
