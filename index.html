@@ -207,18 +207,22 @@ function semDone(m){ return m.subjects.reduce((a,s)=>a+subjDone(s),0); }
 function semTotal(m){ return m.subjects.reduce((a,s)=>a+s.topics.length,0); }
 function audioSrc(s,t,lang){ return `audio/${s.id}/story-${t.n}${(lang||state.lang)==='en'?'-en':''}.m4a`; }
 
-// ---- audio availability probe (one HEAD per subject+language) ----
+// ---- audio availability probe (one HEAD per episode+language, cached) ----
 const audioOK = {};
+function akey(s,t,lang){ return s.id + ':' + (lang||state.lang) + ':' + t.n; }
 function probe(s){
-  const k = s.id + ':' + state.lang;
-  if(audioOK[k] !== undefined) return;
-  audioOK[k] = null;
-  fetch(audioSrc(s, s.topics[0]), {method:'HEAD', cache:'no-store'})
-    .then(r => { audioOK[k] = r.ok; })
-    .catch(() => { audioOK[k] = false; })
-    .then(() => { if(state.sid === s.id) { drawSubhead(); drawList(); } });
+  const pending = s.topics.filter(t => audioOK[akey(s,t)] === undefined);
+  if(!pending.length) return;
+  pending.forEach(t => { audioOK[akey(s,t)] = null; });
+  Promise.all(pending.map(t =>
+    fetch(audioSrc(s,t), {method:'HEAD', cache:'no-store'})
+      .then(r => { audioOK[akey(s,t)] = r.ok; })
+      .catch(() => { audioOK[akey(s,t)] = false; })
+  )).then(() => { if(state.sid === s.id) { drawSubhead(); drawList(); } });
 }
-function hasAudio(s){ const v = audioOK[s.id + ':' + state.lang]; return v === undefined || v === null ? null : v; }
+function hasAudio(s,t){ const v = audioOK[akey(s,t)]; return v === undefined || v === null ? null : v; }
+function audioCount(s){ return s.topics.filter(t => hasAudio(s,t) === true).length; }
+function audioProbed(s){ return s.topics.every(t => hasAudio(s,t) !== null); }
 
 // ---- notes (lazy-loaded notes/<id>.js) ----
 const notesWait = {};
@@ -261,8 +265,11 @@ function drawSubhead(){
   const s = subj(); probe(s);
   let h = `<span class="paper">${esc(s.paper)}</span>`;
   if(s.optional) h += `<span class="opt">${esc(s.optional)} — both options are hosted; study the one your college chose</span>`;
-  const a = hasAudio(s);
-  if(a === false) h += `<span class="warn">🎧 ${state.lang==='en'?'English':'Telugu'} audio not uploaded yet — notes are ready</span>`;
+  if(audioProbed(s)){
+    const n = audioCount(s), L = state.lang==='en'?'English':'Telugu';
+    if(n === 0) h += `<span class="warn">🎧 ${L} audio not uploaded yet${s.notes?' — notes are ready':''}</span>`;
+    else if(n < s.topics.length) h += `<span class="warn">🎧 ${n} of ${s.topics.length} episodes have ${L} audio · rest coming soon</span>`;
+  }
   const n = notesOf(s);
   if(n && n.extras.length) n.extras.forEach((x,i) => { h += `<span class="chip" onclick="openExtra(${i})">📝 ${esc(x.title.split('—')[0].trim())}</span>`; });
   else if(s.notes && !n) loadNotes(s, ok => { if(ok && state.sid===s.id){ drawSubhead(); drawList(); } });
@@ -271,9 +278,9 @@ function drawSubhead(){
 function drawList(){
   const s = subj();
   const notes = notesOf(s);
-  const a = hasAudio(s);
   list.innerHTML = '';
   s.topics.forEach(t => {
+    const a = hasAudio(s,t);
     const id = key(s.id,t.n), p = prog[id] || {}, pc = pct(p), done = isDone(s.id,t.n);
     const c = document.createElement('div');
     c.className = 'card' + (curId===id?' on':'') + (done?' done':'');
@@ -337,7 +344,7 @@ function play(s,t){
     au.playbackRate = speed;
   };
   au.onerror = () => {
-    audioOK[s.id + ':' + state.lang] = false;
+    audioOK[akey(s,t)] = false;
     document.getElementById('nowsub').textContent = `${s.name} · ${state.lang==='en'?'English':'Telugu'} audio not uploaded yet`;
     drawSubhead(); drawList();
   };
@@ -406,7 +413,7 @@ function showNotesHtml(title, keyline, html, ctx){
   document.getElementById('nttl').textContent = title;
   document.getElementById('nkey').textContent = keyline;
   document.getElementById('nbody').innerHTML = html;
-  document.getElementById('nplay').hidden = !(ctx && hasAudio(ctx.s) !== false);
+  document.getElementById('nplay').hidden = !(ctx && hasAudio(ctx.s, ctx.t) !== false);
   const m = document.getElementById('nmodal');
   m.classList.add('show'); m.scrollTop = 0;
   document.body.style.overflow = 'hidden';
