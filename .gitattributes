@@ -1,0 +1,7 @@
+# keep pipeline files LF on every platform (bash + tsv maps break on CRLF)
+*.sh text eol=lf
+*.tsv text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.js text eol=lf
+*.html text eol=lf

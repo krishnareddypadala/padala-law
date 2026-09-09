@@ -11,6 +11,7 @@ mkdir -p "$OUT"
 [[ -f "$MAP" ]] || { echo "no map file $MAP"; exit 1; }
 moved=0
 while IFS=$'\t' read -r tag dst; do
+  tag=${tag%$'\r'}; dst=${dst%$'\r'}   # tolerate CRLF checkouts (Windows)
   [[ -z "$tag" || "$tag" == \#* ]] && continue
   f=$(ls -t "$DL"/"$tag"*.m4a "$DL"/"$tag"*.mp3 "$DL"/"$tag"*.wav 2>/dev/null | head -1 || true)
   [[ -z "$f" ]] && continue

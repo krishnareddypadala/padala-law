@@ -4,7 +4,7 @@ You are running an unattended overnight batch. Work slowly and verify each step.
 
 ## Setup facts
 - Repo: `~/padala-law`. Prompts: `~/padala-law/sem5-pipeline/prompts/evidence_te.json` and `evidence_en.json`.
-- Downloads folder: `~/nlm-downloads` (Chrome is configured to save there without asking).
+- Downloads folder: `~/nlm-downloads` (Chrome is configured to save there without asking). On Krishna's Windows Chrome the default is `C:\Users\psmkr\Downloads\songs`.
 - Chrome has two profiles named **A** and **B**, both logged into NotebookLM Pro, both with a notebook named **Evidence** containing `Evidence.docx`.
 - Use the Claude in Chrome tools to control the browser. Take a screenshot before every click that matters.
 
@@ -15,8 +15,8 @@ Profile B: evidence_te.json items 11–12 (EV11TE, EV12TE), then evidence_en.jso
 ## Loop — for each item
 1. Open NotebookLM in the current profile → open the notebook **Evidence**.
 2. In the Studio panel, click **Audio Overview** → **Customize** (or the pencil/"Customise" control). If a previous audio exists, use the option to generate a new one; do NOT delete existing ones.
-3. Paste the item's `prompt` text exactly. Click **Generate**.
-4. Wait. Poll every 60 seconds by screenshot until the player appears with a duration. Do not wait more than 12 minutes; if it exceeds that, log `TIMEOUT <tag>` and move on.
+3. Set language to Telugu for TE items (English for EN). With Telugu selected the **Long** length option disappears; keep **Default** (~22 min). Paste the item's `prompt` text exactly. Click **Generate**.
+4. Wait. Poll every 60 seconds by screenshot until the player appears with a duration. Do not wait more than 25 minutes (a 22-minute Telugu Deep Dive took ~17 minutes to generate on 2026-09-10); if it exceeds that, log `TIMEOUT <tag>` and move on.
 5. Click the download control (three-dot menu → Download). Wait until a new file appears in `~/nlm-downloads` (check with `ls -t ~/nlm-downloads | head -1` in the shell).
 6. Rename the newest downloaded file to `<tag>.m4a` — e.g. `mv "$(ls -t ~/nlm-downloads/*.m4a | head -1)" ~/nlm-downloads/EV01TE.m4a`. If the download is `.wav` or `.mp3`, keep that extension but use the tag as the name.
 7. Append a line to `~/padala-law/sem5-pipeline/nights/night1.log`: `OK <tag> <filename> <duration if visible>`.
