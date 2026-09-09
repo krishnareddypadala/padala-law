@@ -10,10 +10,11 @@
 | `nights/nightN.md` | paste into Claude Code on the VM; runs ~20 generations |
 | `scripts/deploy.sh <subject>` | encode (48k mono AAC faststart) → `audio/<subject>/story-NN[-en].m4a` → commit → push |
 | `scripts/verify.sh` | done/missing report |
-| `data/<subject>.js` | entry to splice into site `data.js` (done in Session D) |
+| `data/<subject>.js` | entry to splice into site `data.js` (evidence: done) |
+| `build/notes_html.js <subject>` | builds `notes/<subject>.js` for the site's 📝 notes reader from `build/<subject>_part*.js` (no npm packages needed) |
 
 Site convention (from the existing Sem IV player): Telugu audio = `story-NN.m4a` (plays in the player),
 English = `story-NN-en.m4a` (download; player toggle added later), infographic = `img/<subject>/story-NN.jpg`.
 
 Subjects: evidence · crpc · cpc · banking · insurance · media · ihr
-Status: **evidence** ready (12 episodes). Others follow in Sessions B–C.
+Status: **evidence** ready (12 episodes, notes live on the site, audio pending). Others follow in Sessions B–C.
