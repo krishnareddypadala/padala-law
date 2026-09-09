@@ -6,7 +6,7 @@ and renames each download to its tag so `scripts/deploy.sh` can pick it up.
 
 Before night 1: finish `00_VM_SETUP.md` and the sanity test (one manual generation).
 
-Pacing: ~5 min per file. 20 files ≈ 2 hours. Two accounts × ~10 each per night.
+Pacing: ~17 min per Telugu Deep Dive file (measured 2026-09-10). 20 files ≈ 6 hours, so keep two generations in flight (NotebookLM allows 2 at a time). Two accounts × ~10 each per night.
 If NotebookLM shows a limit message, the task switches profile; if both are exhausted, it stops.
 
 Morning after each night:
