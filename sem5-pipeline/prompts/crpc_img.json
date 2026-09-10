@@ -1,0 +1,123 @@
+[
+{
+"tag": "CR02",
+"title": "Eleven Rules in the Lock-up",
+"sub": "D.K. Basu v State of W.B. (1997) · Arnesh Kumar (2014)",
+"scene": "a night-time Indian police lock-up seen through iron bars, a plain-clothes officer writing an arrest memo on a clipboard while a worried young man sits on a bench, a wall clock showing midnight, a witness signing the memo; cool blue and amber light",
+"badges": [
+"Sec 41-41A CrPC = Sec 35 BNSS",
+"Arrest memo + 24 hours",
+"Rights of the arrested"
+]
+},
+{
+"tag": "CR03",
+"title": "The Right to Stay Silent",
+"sub": "Nandini Satpathy v P.L. Dani (1978)",
+"scene": "a dignified middle-aged Indian woman politician in a cotton saree seated across a table from an investigating officer, a written questionnaire between them, her lips closed and hand raised in polite refusal, a portrait of Gandhi and a ceiling fan behind; realistic digital painting",
+"badges": [
+"Sec 161-162 CrPC = Sec 180-181 BNSS",
+"Sec 164 confession",
+"Art 20(3): no self-incrimination"
+]
+},
+{
+"tag": "CR04",
+"title": "The Midnight Search",
+"sub": "Pooran Mal v Director of Inspection (1974)",
+"scene": "income-tax officers with torches searching a wealthy merchant's old haveli at midnight, opening steel almirahs and pulling out ledgers and gold, the merchant in a dhoti watching anxiously from a doorway; dramatic torchlight in a dark room",
+"badges": [
+"Sec 93-100 CrPC = Sec 96-103 BNSS",
+"Sec 165 search by police",
+"Illegally seized evidence still admissible"
+]
+},
+{
+"tag": "CR05",
+"title": "The Chief Minister's Complaint",
+"sub": "State of Haryana v Bhajan Lal (1992)",
+"scene": "a stern Indian High Court courtroom, a judge in black robe tearing a page of an FIR in half as a symbolic gesture, a politician in white kurta watching from the dock, marble pillars and the scales of justice",
+"badges": [
+"Sec 482 CrPC = Sec 528 BNSS",
+"Bhajan Lal 7 categories",
+"Sec 190 cognizance · Sec 200 complaint"
+]
+},
+{
+"tag": "CR06",
+"title": "Bail, Not Jail",
+"sub": "Gurbaksh Singh Sibbia v State of Punjab (1980)",
+"scene": "a Sikh man in a turban walking out through the open gate of an Indian jail into morning sunlight, a lawyer holding a bail order beside him, jail walls and a guard in the background; hopeful golden light",
+"badges": [
+"Sec 437-439 CrPC = Sec 480-483 BNSS",
+"Sec 438 anticipatory bail = Sec 482 BNSS",
+"Sec 436A undertrials"
+]
+},
+{
+"tag": "CR07",
+"title": "Shah Bano's Twenty-Five Rupees",
+"sub": "Mohd. Ahmed Khan v Shah Bano Begum (1985)",
+"scene": "an elderly Muslim woman in a white saree and headscarf standing alone on the steps of a colonial-era Indian court building holding a single folded court order, pigeons on the steps, soft morning light; dignified realistic painting",
+"badges": [
+"Sec 125 CrPC = Sec 144 BNSS",
+"Maintenance of wife, child, parents",
+"1986 Act · Danial Latifi"
+]
+},
+{
+"tag": "CR08",
+"title": "The Last Jury",
+"sub": "K.M. Nanavati v State of Maharashtra (1962)",
+"scene": "a 1959 Bombay sessions courtroom with a twelve-man jury in the box, a handsome naval officer in white uniform standing in the dock, the judge in a wig looking sternly at the jury, black-and-white newspaper headlines pinned on the wall; vintage sepia-toned realistic painting",
+"badges": [
+"Sec 211-224 CrPC = Sec 234-247 BNSS",
+"Sessions · warrant · summons · summary trials",
+"Sec 265A plea bargaining"
+]
+},
+{
+"tag": "CR09",
+"title": "Tried Twice?",
+"sub": "Maqbool Hussain v State of Bombay (1953)",
+"scene": "a man in a 1950s suit at a customs counter of an old Bombay airport, a customs officer holding up a confiscated gold bar, and behind them the same man standing in a criminal court dock — two scenes split by a vertical line; realistic painting",
+"badges": [
+"Sec 300 CrPC = Sec 337 BNSS · Art 20(2)",
+"Sec 320 compounding · Sec 321 withdrawal",
+"Sec 306 pardon · Sec 468 limitation"
+]
+},
+{
+"tag": "CR10",
+"title": "Rarest of the Rare",
+"sub": "Bachan Singh v State of Punjab (1980)",
+"scene": "a grey stone High Court bench with three judges in black robes, a red-bound death sentence file open on the desk, a scale of justice tipping in the foreground, a distant hangman's noose faintly visible in a shadowed corridor; solemn, muted tones",
+"badges": [
+"Sec 353-365 CrPC = Sec 392-406 BNSS",
+"Sec 366 death confirmation · Sec 372-394 appeals",
+"Sec 397 revision · Sec 432-433 remission"
+]
+},
+{
+"tag": "CR11",
+"title": "The Boy Who Was Not Tried as a Man",
+"sub": "Nirbhaya juvenile · Pratap Singh v State of Jharkhand (2005)",
+"scene": "a teenage boy in a plain shirt sitting alone on a bench in a Juvenile Justice Board room with soft yellow walls and children's drawings, a woman social worker and a magistrate without robes at a round table, candles of a Delhi protest march glowing through a window; gentle but serious tone",
+"badges": [
+"JJ Act 2015 · age below 18",
+"Sec 82-83 IPC = Sec 20-21 BNS",
+"Sec 15 preliminary assessment (16-18)"
+]
+},
+{
+"tag": "CR12",
+"title": "A Second Chance",
+"sub": "Ramji Missar v State of Bihar (1963) · Probation of Offenders Act 1958",
+"scene": "a young first-time offender shaking hands with a probation officer outside a district court, his mother watching with relief, a bond paper in his other hand, a village road and morning sun behind; warm hopeful colours",
+"badges": [
+"Probation of Offenders Act Sec 3-6",
+"Sec 360 CrPC = Sec 401 BNSS",
+"Parole · remission · Malimath Committee"
+]
+}
+]
