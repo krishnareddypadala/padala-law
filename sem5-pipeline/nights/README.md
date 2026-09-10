@@ -50,3 +50,17 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
   disabling; its queue now holds CR03TE, CR06TE, CR07TE ("Scheduled for after 12am") and the banner says "Limit resets at 22:21".
   Pattern for B: on reset run `__gen` twice for 'now', then `__gen` for 'later' until the button is disabled (≈2 later items); reload the tab to clear a stuck dialog.
   Pro account still on its daily Audio Overview limit at 17:03 (hit ~02:20) — retry after ~02:30.
+
+## Infographics (added 2026-09-10 evening — Krishna: "Infographic is better")
+- One Gemini Notebook infographic per episode → `img/<subj>/story-NN.jpg` (the player's 📊 button). Infographics are NOT
+  blocked by the Audio Overview daily limit; ~3 min each, 2 in flight.
+- Description comes from `scripts/ig_prompt.py <subj> <NN>` (or `__igDesc(subj,nn)` in the page, which fetches
+  `build/<subj>_episodes.json` from the site). Settings: Portrait, Auto-select style, Detailed.
+- Page helpers (define in the notebook tab): `__igDlg`, `__igGen(desc,'Portrait','Detailed')`, `__artList()`, `__artRow(title)`
+  (strict: the smallest ancestor of a More button containing exactly one "1 source"), `__artDownload(title)`.
+  Renaming artifacts via JS is unreliable (the title input stays open) — skip renaming; download by the auto title and pass
+  the filename glob to the collector: `bash scripts/collect_ig.sh crpc CR 04 "Legal_Search*.png"` → `img/crpc/story-04.jpg`.
+  Always check md5 of the PNGs — a wrong-row click silently downloads the same artifact twice.
+- `scripts/deploy_img.py <subj> <NN> <png>` converts to JPEG (max 1536x2752, q85). Commit `img/` and push.
+- Gemini app posters (gemini.google.com, "Generate an image…") also work (prompts in `prompts/crpc_img.json`, `scripts/img_prompt.py`)
+  but Krishna prefers the infographics; the two posters made are kept in Downloads/songs/img as CR01IMG/CR02IMG.
