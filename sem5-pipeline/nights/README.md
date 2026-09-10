@@ -68,3 +68,9 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
   until the tab is reloaded) — so: one infographic per notebook at a time, reload the tab between batches, and run several
   notebooks in parallel tabs. Start with `__igGen(await __igDesc(subj,nn))`; collect with `collect_ig.sh <subj> <TAG> <NN> "<Title_glob>*.png"`.
   Hidden tabs sometimes freeze (JS timeouts, blank dialogs) — a navigate() to the same URL fixes it. Each helper call must stay < 45 s.
+- 20:25: Pro account hit "You have reached your daily infographic limit" after 18 infographics (crpc 12, evidence 1 + 1 duplicate,
+  cpc 1, + a few failed/duplicate runs). Done: crpc 12/12, evidence 01, cpc 01. Account B made EV02 (its AI usage then hit
+  "limit reached, available after 22:21"). Only the VISIBLE Chrome tab executes generations reliably — hidden tabs report
+  "no dialog"/stale tiles; navigate the visible tab (256539370 this session) to whichever notebook is needed (the B account's
+  notebook also works from it via ?authuser=). The B dialog heading is "Customize Infographic" (capital I) — match case-insensitively.
+  Remaining infographics: evidence 03-12, cpc 02-12, banking, insurance, media, ihr (69) — ~18/day on Pro, resume after ~19:15 next day.
