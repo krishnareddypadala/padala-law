@@ -74,3 +74,13 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
   "no dialog"/stale tiles; navigate the visible tab (256539370 this session) to whichever notebook is needed (the B account's
   notebook also works from it via ?authuser=). The B dialog heading is "Customize Infographic" (capital I) — match case-insensitively.
   Remaining infographics: evidence 03-12, cpc 02-12, banking, insurance, media, ihr (69) — ~18/day on Pro, resume after ~19:15 next day.
+
+## Sharing (added 2026-09-10 20:40)
+- Every episode card has a 📤 button and every subject header a "share this subject" chip → Web Share sheet on phones (WhatsApp etc.),
+  otherwise copies the text and opens wa.me. The text carries: the share page link, the direct Telugu/English .m4a links,
+  the infographic .jpg link and the notes deep link.
+- Deep links: `https://padala.law/#<subject>/<NN>` opens that episode (`/notes` opens the reader, `/img` the infographic);
+  the player also writes `#subject/NN` to the address bar while playing, so the URL itself is shareable.
+- WhatsApp preview cards come from static pages `s/<subject>/<NN>.html` and `s/<subject>.html` (OpenGraph title/description/image,
+  then redirect to the hash link). Regenerate after adding images: `node sem5-pipeline/build/share_pages.js` (og:image = the episode's
+  infographic if it exists, else the subject's story-01, else img/og-default.jpg). Commit the `s/` folder.
