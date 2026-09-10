@@ -45,3 +45,4 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
 - Order of work when quota returns: CrPC Telugu 03-12 → CPC Telugu → Banking → Insurance → Media → IHR (Telugu first), then English.
   New notebooks on Pro: navigate `?addSource=true`, click "Upload files" by ref, `file_upload` the docx from `material/`.
 - Renaming rule: match the finished item's auto-title to the episode (e.g. "police arrest rules" = CR02) — if two episodes fit, prefer FIFO order of the queue.
+- Pro-account notebooks created 2026-09-10 afternoon (source uploaded, no audio yet): CPC `6a1c11d3-581d-4dbc-a2f9-f1c02353a3c3`; Banking `90608f81-ed39-4f6a-a788-9531d82360fb`; Insurance `dee3bb02-9974-40d4-9771-3447b12091b1`; Media `5e724d0f-f350-4e60-905d-a8e0e307f3f0`; IHR `edfad3df-99c6-419d-bb5e-70fc03a7c230`. Open a notebook as `https://notebook.google.com/notebook/<id>?authuser=psmkreddy255@gmail.com`; the source is already selected.
