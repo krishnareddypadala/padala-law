@@ -1,0 +1,25 @@
+# tag	dest   (NotebookLM download name starts with the tag; deploy.sh matches by prefix)
+BK01TE	story-01
+BK01EN	story-01-en
+BK02TE	story-02
+BK02EN	story-02-en
+BK03TE	story-03
+BK03EN	story-03-en
+BK04TE	story-04
+BK04EN	story-04-en
+BK05TE	story-05
+BK05EN	story-05-en
+BK06TE	story-06
+BK06EN	story-06-en
+BK07TE	story-07
+BK07EN	story-07-en
+BK08TE	story-08
+BK08EN	story-08-en
+BK09TE	story-09
+BK09EN	story-09-en
+BK10TE	story-10
+BK10EN	story-10-en
+BK11TE	story-11
+BK11EN	story-11-en
+BK12TE	story-12
+BK12EN	story-12-en
