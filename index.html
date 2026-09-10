@@ -6,6 +6,9 @@
 <title>Padala Law — LL.B Audio Revision</title>
 <meta name="description" content="Story-based Telugu audio revision and exam notes for LL.B semesters IV and V: International Law, Labour Law, Taxation, IPR, Land Laws, Evidence and more.">
 <meta name="theme-color" content="#0b1120">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Padala Law">
+<meta property="og:title" content="Padala Law — LL.B Audio Revision"><meta property="og:description" content="Story-based Telugu audio revision, exam notes and infographics for LL.B semesters IV and V (AKNU).">
+<meta property="og:image" content="https://padala.law/img/og-default.jpg"><meta property="og:url" content="https://padala.law/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
 <style>
 :root{
@@ -273,6 +276,7 @@ function drawSubhead(){
   const n = notesOf(s);
   if(n && n.extras.length) n.extras.forEach((x,i) => { h += `<span class="chip" onclick="openExtra(${i})">📝 ${esc(x.title.split('—')[0].trim())}</span>`; });
   else if(s.notes && !n) loadNotes(s, ok => { if(ok && state.sid===s.id){ drawSubhead(); drawList(); } });
+  h += `<span class="chip" onclick="shareSubject()">📤 share this subject</span>`;
   subhead.innerHTML = h;
 }
 function drawList(){
@@ -291,12 +295,13 @@ function drawList(){
     const hasN = !!(notes && notes.episodes[t.n]) || (s.notes && !notes);
     c.innerHTML = `<div class="num">${done?'✓':t.n}</div>
       <div class="meta"><div class="t">${esc(t.t)}</div><div class="s">${esc(t.s)}</div>${stat}</div>
-      <div class="btns">${hasN?`<div class="ic" data-act="notes">📝 notes</div>`:''}<div class="ic" data-act="img">📊</div></div>
+      <div class="btns">${hasN?`<div class="ic" data-act="notes">📝 notes</div>`:''}<div class="ic" data-act="img">📊</div><div class="ic" data-act="share" title="Share on WhatsApp">📤</div></div>
       <div class="bar" style="width:${pc}%"></div>`;
     c.onclick = e => {
       const act = e.target.dataset.act;
       if(act === 'img'){ showImg(s.id,t); return; }
       if(act === 'notes'){ openNotes(s,t); return; }
+      if(act === 'share'){ shareEpisode(s,t); return; }
       if(a === false && s.notes){ openNotes(s,t); return; }
       play(s,t);
     };
@@ -433,8 +438,46 @@ function hideNotes(){ document.getElementById('nmodal').classList.remove('show')
 function playFromNotes(){ if(notesCtx){ play(notesCtx.s, notesCtx.t); hideNotes(); } }
 document.addEventListener('keydown', e => { if(e.key==='Escape'){ hideImg(); hideNotes(); } });
 
+// ---- sharing and deep links ----
+// Deep link: https://padala.law/#<subject>/<NN>[/notes|/img]  (share pages s/<subject>/<NN>.html carry the WhatsApp preview and redirect here)
+const SITE = 'https://padala.law';
+function shareUrl(s,t){ return t ? `${SITE}/s/${s.id}/${t.n}.html` : `${SITE}/s/${s.id}.html`; }
+async function doShare(title, text){
+  if(navigator.share){ try{ await navigator.share({title, text}); return; }catch(e){ if(e && e.name==='AbortError') return; } }
+  try{ await navigator.clipboard.writeText(text); }catch(e){}
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+function shareEpisode(s,t){
+  const lines = [`🎧 ${s.name} · Episode ${t.n}: ${t.t}`, t.s, '', `▶️ Listen + notes: ${shareUrl(s,t)}`];
+  if(hasAudio(s,t) !== false) lines.push(`🔊 Telugu audio file: ${SITE}/${audioSrc(s,t,'te')}`);
+  if(s.en) lines.push(`🔊 English audio file: ${SITE}/${audioSrc(s,t,'en')}`);
+  lines.push(`📊 Infographic: ${SITE}/img/${s.id}/story-${t.n}.jpg`);
+  if(s.notes) lines.push(`📝 Notes: ${SITE}/#${s.id}/${t.n}/notes`);
+  lines.push('', 'Padala Law — LL.B (AKNU) revision · padala.law');
+  doShare(`${t.n}. ${t.t}`, lines.join('\n'));
+}
+function shareSubject(){
+  const s = subj();
+  doShare(s.name, [`📚 ${s.name} (${s.paper}) — ${s.topics.length} story-based Telugu audio episodes with exam notes`, '', shareUrl(s), '', 'Padala Law — LL.B (AKNU) revision · padala.law'].join('\n'));
+}
+function applyHash(){
+  const m = (location.hash || '').replace(/^#/, '').split('/');
+  if(!m[0]) return;
+  const s = SUBJECTS.find(x => x.id === m[0]); if(!s) return;
+  state.sem = semOf(s.id).id; state.sid = s.id; saveState(); drawAll();
+  const t = m[1] && s.topics.find(x => x.n === m[1]); if(!t) return;
+  const card = [...list.children][s.topics.indexOf(t)]; if(card) card.scrollIntoView({block:'center'});
+  if(m[2] === 'notes'){ openNotes(s,t); return; }
+  if(m[2] === 'img'){ showImg(s.id,t); return; }
+  play(s,t);
+}
+window.addEventListener('hashchange', applyHash);
+const _play = play;
+play = function(s,t){ _play(s,t); try{ history.replaceState(null, '', `#${s.id}/${t.n}`); }catch(e){} };
+
 document.getElementById('speedlbl').textContent = 'Speed ' + speed + '×';
 drawAll();
+applyHash();
 </script>
 </body>
 </html>
