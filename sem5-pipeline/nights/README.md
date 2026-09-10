@@ -64,3 +64,7 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
 - `scripts/deploy_img.py <subj> <NN> <png>` converts to JPEG (max 1536x2752, q85). Commit `img/` and push.
 - Gemini app posters (gemini.google.com, "Generate an image…") also work (prompts in `prompts/crpc_img.json`, `scripts/img_prompt.py`)
   but Krishna prefers the infographics; the two posters made are kept in Downloads/songs/img as CR01IMG/CR02IMG.
+- Infographic tile gets class `disabled-tile` while that notebook has one generating (and stays stale after the "ready" toast
+  until the tab is reloaded) — so: one infographic per notebook at a time, reload the tab between batches, and run several
+  notebooks in parallel tabs. Start with `__igGen(await __igDesc(subj,nn))`; collect with `collect_ig.sh <subj> <TAG> <NN> "<Title_glob>*.png"`.
+  Hidden tabs sometimes freeze (JS timeouts, blank dialogs) — a navigate() to the same URL fixes it. Each helper call must stay < 45 s.
