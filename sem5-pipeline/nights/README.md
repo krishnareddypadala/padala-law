@@ -76,9 +76,9 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
   Remaining infographics: evidence 03-12, cpc 02-12, banking, insurance, media, ihr (69) — ~18/day on Pro, resume after ~19:15 next day.
 
 ## Sharing (added 2026-09-10 20:40)
-- Every episode card has a 📤 button and every subject header a "share this subject" chip → Web Share sheet on phones (WhatsApp etc.),
-  otherwise copies the text and opens wa.me. The text carries: the share page link, the direct Telugu/English .m4a links,
-  the infographic .jpg link and the notes deep link.
+- Every episode card has a 📤 button and every subject header a "share this subject" chip → a small box listing the links
+  (episode page, Telugu/English .m4a, infographic .jpg, notes deep link) each with a Copy button; the episode-page link is copied
+  automatically. Krishna asked for plain copyable links, NOT a WhatsApp share sheet (2026-09-10 20:50).
 - Deep links: `https://padala.law/#<subject>/<NN>` opens that episode (`/notes` opens the reader, `/img` the infographic);
   the player also writes `#subject/NN` to the address bar while playing, so the URL itself is shareable.
 - WhatsApp preview cards come from static pages `s/<subject>/<NN>.html` and `s/<subject>.html` (OpenGraph title/description/image,

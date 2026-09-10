@@ -88,6 +88,13 @@ audio{width:100%;height:38px}
 .modal{position:fixed;inset:0;background:rgba(2,6,18,.94);z-index:100;display:none;
   align-items:center;justify-content:center;padding:16px;overflow:auto}
 .modal.show{display:flex}
+.sbox{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;max-width:560px;width:92%;max-height:88vh;overflow:auto;color:var(--txt)}
+.sbox h3{margin:0 0 10px;font-size:15px}
+.srow{display:flex;gap:8px;align-items:center;margin:8px 0}
+.srow label{flex:0 0 96px;font-size:11px;color:var(--dim)}
+.srow input{flex:1;min-width:0;background:var(--bg);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:12px}
+.srow button{flex:0 0 auto;background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer}
+.stoast{font-size:12px;color:#86efac;min-height:16px;margin-top:6px}
 .modal img{max-width:100%;max-height:88vh;border-radius:10px}
 .close{position:fixed;top:14px;right:16px;background:var(--panel);border:1px solid var(--line);
   color:var(--txt);border-radius:9px;padding:8px 13px;cursor:pointer;font-size:14px;z-index:2}
@@ -153,6 +160,10 @@ footer{color:var(--dim);font-size:11.5px;text-align:center;padding:10px 16px 4px
 <div class="modal" id="modal">
   <button class="close" onclick="hideImg()">Close ✕</button>
   <img id="mimg" alt="Revision infographic">
+</div>
+<div class="modal" id="smodal">
+  <button class="close" onclick="hideShare()">Close ✕</button>
+  <div class="sbox"><h3 id="sttl">Share links</h3><div id="srows"></div><div class="stoast" id="stoast"></div></div>
 </div>
 
 <div class="nmodal" id="nmodal">
@@ -436,29 +447,41 @@ function openExtra(i){
 }
 function hideNotes(){ document.getElementById('nmodal').classList.remove('show'); document.body.style.overflow = ''; }
 function playFromNotes(){ if(notesCtx){ play(notesCtx.s, notesCtx.t); hideNotes(); } }
-document.addEventListener('keydown', e => { if(e.key==='Escape'){ hideImg(); hideNotes(); } });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ hideImg(); hideNotes(); if(typeof hideShare==='function') hideShare(); } });
 
 // ---- sharing and deep links ----
 // Deep link: https://padala.law/#<subject>/<NN>[/notes|/img]  (share pages s/<subject>/<NN>.html carry the WhatsApp preview and redirect here)
 const SITE = 'https://padala.law';
 function shareUrl(s,t){ return t ? `${SITE}/s/${s.id}/${t.n}.html` : `${SITE}/s/${s.id}.html`; }
-async function doShare(title, text){
-  if(navigator.share){ try{ await navigator.share({title, text}); return; }catch(e){ if(e && e.name==='AbortError') return; } }
-  try{ await navigator.clipboard.writeText(text); }catch(e){}
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+async function copyText(text, msg){
+  let ok = false;
+  try{ await navigator.clipboard.writeText(text); ok = true; }catch(e){
+    try{ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); ta.remove(); }catch(e2){}
+  }
+  const el = document.getElementById('stoast'); if(el) el.textContent = ok ? (msg || 'Copied ✓') : 'Copy failed — select the link and copy it manually';
+  return ok;
 }
+function showShare(title, items){
+  document.getElementById('sttl').textContent = title;
+  document.getElementById('srows').innerHTML = items.map((it,i) =>
+    `<div class="srow"><label>${esc(it.label)}</label><input id="sl${i}" readonly value="${esc(it.url)}" onclick="this.select()"><button onclick="copyText(document.getElementById('sl${i}').value,'${esc(it.label)} link copied ✓')">Copy</button></div>`).join('');
+  document.getElementById('stoast').textContent = '';
+  document.getElementById('smodal').classList.add('show');
+  copyText(items[0].url, items[0].label + ' link copied ✓ — paste it anywhere');
+}
+function hideShare(){ document.getElementById('smodal').classList.remove('show'); }
+document.getElementById('smodal').onclick = e => { if(e.target.id==='smodal') hideShare(); };
 function shareEpisode(s,t){
-  const lines = [`🎧 ${s.name} · Episode ${t.n}: ${t.t}`, t.s, '', `▶️ Listen + notes: ${shareUrl(s,t)}`];
-  if(hasAudio(s,t) !== false) lines.push(`🔊 Telugu audio file: ${SITE}/${audioSrc(s,t,'te')}`);
-  if(s.en) lines.push(`🔊 English audio file: ${SITE}/${audioSrc(s,t,'en')}`);
-  lines.push(`📊 Infographic: ${SITE}/img/${s.id}/story-${t.n}.jpg`);
-  if(s.notes) lines.push(`📝 Notes: ${SITE}/#${s.id}/${t.n}/notes`);
-  lines.push('', 'Padala Law — LL.B (AKNU) revision · padala.law');
-  doShare(`${t.n}. ${t.t}`, lines.join('\n'));
+  const items = [{label:'Episode page', url: shareUrl(s,t)}];
+  if(hasAudio(s,t) !== false) items.push({label:'Telugu audio', url: `${SITE}/${audioSrc(s,t,'te')}`});
+  if(s.en) items.push({label:'English audio', url: `${SITE}/${audioSrc(s,t,'en')}`});
+  items.push({label:'Infographic', url: `${SITE}/img/${s.id}/story-${t.n}.jpg`});
+  if(s.notes) items.push({label:'Notes', url: `${SITE}/#${s.id}/${t.n}/notes`});
+  showShare(`${t.n}. ${t.t}`, items);
 }
 function shareSubject(){
   const s = subj();
-  doShare(s.name, [`📚 ${s.name} (${s.paper}) — ${s.topics.length} story-based Telugu audio episodes with exam notes`, '', shareUrl(s), '', 'Padala Law — LL.B (AKNU) revision · padala.law'].join('\n'));
+  showShare(s.name, [{label:'Subject page', url: shareUrl(s)}, {label:'Direct link', url: `${SITE}/#${s.id}`}]);
 }
 function applyHash(){
   const m = (location.hash || '').replace(/^#/, '').split('/');
