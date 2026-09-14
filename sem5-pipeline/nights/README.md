@@ -125,3 +125,4 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   Never touch the user's other Chrome windows.
 - 02:45: CrPC Telugu now COMPLETE (01-12). B (CPC.docx selected) generating CP09, CP10; CP11 scheduled; CP12 could not be queued
   (later-slot full). B window resets 07:21. Pro daily limit resets ~19:05.
+- 03:10: cpc TE 01-10 live. B shows 2 scheduled (CP11, CP12) for after 07:21; B AI-usage limit reached until 07:21. Nothing runnable until then.
