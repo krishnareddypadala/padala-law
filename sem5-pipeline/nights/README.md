@@ -114,3 +114,14 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   to swallow file-input clicks → REAL click on the "Upload files" button (computer/ref) → JS: make `input[type=file]` visible with
   aria-label "SOURCE FILE INPUT" → `find` it → `file_upload` with the docx path. Synthetic drop events and JS button clicks do nothing.
   Plan for B after 21:21: CR10, CR11 (already scheduled) then CP09-12 (2 now + 2 later per window).
+
+## 2026-09-15 early hours — Chrome profiles and window state
+- Two "Claude in Chrome" instances are connected: deviceId 7fb5bf6e-… is the profile with psmkreddy255 + krishnapadala55
+  (labelled "Browser 2"); c3a28f5b-… (labelled "psmkreddy") is a profile where only [other account] is signed in —
+  NEVER use it. Selecting it and opening notebook.google.com auto-created an empty notebook aa0fb19a under [other account]
+  (01:15) — Krishna may want to delete it. Always `select_browser 7fb5…` first, then `tabs_context_mcp`.
+- If innerWidth is 0 the group's window is minimized: restore ONLY the window whose title contains "Gemini Notebook"
+  (PowerShell ShowWindow 9 + MoveWindow), then work in that window's ACTIVE tab (navigate it to whichever notebook is needed).
+  Never touch the user's other Chrome windows.
+- 02:45: CrPC Telugu now COMPLETE (01-12). B (CPC.docx selected) generating CP09, CP10; CP11 scheduled; CP12 could not be queued
+  (later-slot full). B window resets 07:21. Pro daily limit resets ~19:05.
