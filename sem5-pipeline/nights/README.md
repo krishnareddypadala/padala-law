@@ -105,3 +105,7 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   the Audio Overview tile stops responding to JS clicks — do renames+downloads, then navigate again before generating.
   Concurrency is per notebook (3 seen). Tab IDs change whenever Chrome discards a tab; always re-list with tabs_context.
   Audio today (v2 prompts): CR03,06,12 + CP01-04 + BK01-04 on Pro; CR08,09 (+10,11 queued after 21:21) on B. Live: crpc 01-09 TE, cpc 01-02, banking 01-02.
+- 19:02: Pro hit "daily Audio Overview limit" after ~22 generations today (incl. 3 duplicates). Live now: crpc TE 01-09,12; cpc 01-06 (07,08 generating);
+  banking 01-06. B: CR10, CR11 scheduled for after 21:21. Note: tabs created in a fresh window download to Downloads ROOT, not
+  Downloads/songs — collectors should search both (`find /c/Users/psmkr/Downloads -maxdepth 2 -name "<TAG>*.m4a"`).
+  New tab group windows can come up minimized (outerWidth 0 → narrow layout, Studio hidden); close the group and recreate it.
