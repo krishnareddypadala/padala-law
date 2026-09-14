@@ -84,3 +84,18 @@ cd ~/padala-law/sem5-pipeline && ./scripts/verify.sh && ./scripts/deploy.sh evid
 - WhatsApp preview cards come from static pages `s/<subject>/<NN>.html` and `s/<subject>.html` (OpenGraph title/description/image,
   then redirect to the hash link). Regenerate after adding images: `node sem5-pipeline/build/share_pages.js` (og:image = the episode's
   infographic if it exists, else the subject's story-01, else img/og-default.jpg). Commit the `s/` folder.
+
+## Pro-account notebook IDs (psmkreddy255@gmail.com) — recorded 2026-09-14
+| subject | notebook | source |
+|---|---|---|
+| crpc | 560d45b6-10a5-474b-bf06-05834e756adb | CrPC.docx |
+| evidence | 328fa3d4-9111-400d-96a5-7141ec85d243 | Evidence.docx |
+| cpc | 6a1c11d3-581d-4dbc-a2f9-f1c02353a3c3 | CPC.docx |
+| banking | 90608f81-ed39-4f6a-a788-9531d82360fb | Banking.docx |
+| insurance | dee3bb02-9974-40d4-9771-3447b12091b1 | Insurance.docx |
+| media | 5e724d0f-f350-4e60-905d-a8e0e307f3f0 | Media.docx |
+| ihr | edfad3df-99c6-419d-bb5e-70fc03a7c230 | IHR.docx |
+Account B (krishnapadala55@gmail.com): 069c0895-6717-4482-ac4a-40b2519af1a3 holds CrPC.docx + Evidence.docx (select one before generating).
+URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
+- 2026-09-14 17:15: audio prompts v2 (Ramana + Priya, cold open, cliffhanger, rapid-fire) in use from CR03TE onward. CR07TE deployed from B's
+  old-prompt run; OLD-CR06TE and OLD-CR01TE-long kept in B's notebook as backups (not deployed).
