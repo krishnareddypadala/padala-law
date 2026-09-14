@@ -109,3 +109,8 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   banking 01-06. B: CR10, CR11 scheduled for after 21:21. Note: tabs created in a fresh window download to Downloads ROOT, not
   Downloads/songs — collectors should search both (`find /c/Users/psmkr/Downloads -maxdepth 2 -name "<TAG>*.m4a"`).
   New tab group windows can come up minimized (outerWidth 0 → narrow layout, Studio hidden); close the group and recreate it.
+- 19:30: B's notebook (069c0895) now holds Evidence.docx, CrPC.docx, CPC.docx, Banking.docx — select exactly one before generating.
+  Upload technique that works from a hidden tab: navigate `<notebook>?addSource=true` → JS: patch `HTMLInputElement.prototype.click`
+  to swallow file-input clicks → REAL click on the "Upload files" button (computer/ref) → JS: make `input[type=file]` visible with
+  aria-label "SOURCE FILE INPUT" → `find` it → `file_upload` with the docx path. Synthetic drop events and JS button clicks do nothing.
+  Plan for B after 21:21: CR10, CR11 (already scheduled) then CP09-12 (2 now + 2 later per window).
