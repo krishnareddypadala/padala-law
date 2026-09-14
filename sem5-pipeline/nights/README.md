@@ -99,3 +99,9 @@ Account B (krishnapadala55@gmail.com): 069c0895-6717-4482-ac4a-40b2519af1a3 hold
 URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
 - 2026-09-14 17:15: audio prompts v2 (Ramana + Priya, cold open, cliffhanger, rapid-fire) in use from CR03TE onward. CR07TE deployed from B's
   old-prompt run; OLD-CR06TE and OLD-CR01TE-long kept in B's notebook as backups (not deployed).
+- 2026-09-14 lessons (hidden-tab automation): Chrome throttles timers in hidden tabs after ~5 min, so any helper with sleeps
+  times out (the script still finishes later — CHECK `__status().generating` before re-issuing, or you create duplicates).
+  Rule: `navigate` the tab to the notebook URL first, then act within ~2 min. Downloads open an "Untitled" tab and after that
+  the Audio Overview tile stops responding to JS clicks — do renames+downloads, then navigate again before generating.
+  Concurrency is per notebook (3 seen). Tab IDs change whenever Chrome discards a tab; always re-list with tabs_context.
+  Audio today (v2 prompts): CR03,06,12 + CP01-04 + BK01-04 on Pro; CR08,09 (+10,11 queued after 21:21) on B. Live: crpc 01-09 TE, cpc 01-02, banking 01-02.
