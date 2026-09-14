@@ -2,39 +2,45 @@
 """make_prompts.py <subject>
 Reads build/<subject>_episodes.json and writes:
   prompts/<subject>_en.json, prompts/<subject>_te.json, prompts/<subject>_map.tsv, data/<subject>.js
-Prompt wording follows the Evidence templates that produced good Telugu/English episodes on 2026-09-10.
+Prompt wording v2 (2026-09-14): named hosts Ramana and Priya, cold open, cliffhanger, myth-vs-reality, rapid-fire, memory hook - Krishna: "make audios interesting to listen".
 """
 import json, sys, pathlib
 subj = sys.argv[1] if len(sys.argv) > 1 else "evidence"
 root = pathlib.Path(__file__).resolve().parents[1]
 spec = json.load(open(root / "build" / f"{subj}_episodes.json", encoding="utf-8"))
 
-EN = ("Generate a podcast in ENGLISH. Two hosts: one is a senior advocate who tells the story, the other a curious law student who keeps asking 'but why?'. "
-      "Audience: LL.B students preparing for the {exam}. Use ONLY the uploaded source ({source}), Episode {n}.\n\n"
+EN = ("Generate a podcast in ENGLISH. Audience: LL.B students preparing for the {exam}. Use ONLY the uploaded source ({source}), Episode {n}. Never call this a 'deep dive'.\n\n"
+      "HOSTS: two named people with real personalities. RAMANA is a senior advocate, 30 years at the bar, warm, dramatic, loves a good story and a bad pun. PRIYA is a sharp final-year student who is writing this exam next month, slightly stressed, asks 'but why?' and 'will this come in the exam?', and sometimes challenges Ramana. They tease each other. Real conversation, not a lecture.\n\n"
       "TOPIC: {title}\n\n"
       "STRUCTURE (follow this order):\n"
-      "1. Open with the STORY of the anchor case exactly as told in the source — names, place, year, the dramatic turn. Make it vivid, 3-4 minutes. Do not jump to law until the story lands.\n"
-      "2. Then: 'So what did the court actually decide?' — the principle in one clear sentence.\n"
-      "3. Walk through the sections listed in the source for this episode. For EVERY section number, say the {old} number AND the {new} number (e.g. '{example}').\n"
-      "4. The supporting cases — name, year, one-line holding each. Tie each back to the story.\n"
-      "5. The DIGITAL angle from the source — spend 1-2 minutes here, concrete examples.\n"
-      "6. Close with the EXAM tip: how this is asked in Part A / B / C and the skeleton of a good answer.\n\n"
+      "1. COLD OPEN (first 30 seconds): start in the middle of the story with a vivid line — a place, a time, a person in trouble — no introductions, no 'welcome to the podcast'. Then a short intro.\n"
+      "2. THE STORY (4-5 minutes): tell the anchor case as a drama, exactly as in the source — names, place, year, what each side wanted, the twist. Voice the key lines: what the lawyer argued, what the judge said. Build to the moment of decision and STOP: Ramana asks Priya (and the listener) 'what would you have decided?' — ten seconds of guessing before the reveal.\n"
+      "3. THE PRINCIPLE: 'so what did the court actually decide?' — one clear sentence, then why it matters to an ordinary person today.\n"
+      "4. THE LAW, WOVEN INTO THE STORY: walk through the sections listed in the source, but attach each section to a moment in the story ('this is where Section X kicks in'). For EVERY section number say the {old} number AND the {new} number (e.g. '{example}'). No list-reading.\n"
+      "5. THE OTHER CASES: the supporting cases — each as a 30-second mini-story (who, what happened, one-line holding) and how it agrees with or twists the main case.\n"
+      "6. MYTH vs REALITY (1 minute): Priya states one thing students commonly get wrong on this topic; Ramana corrects it from the source.\n"
+      "7. THE DIGITAL ANGLE (1-2 minutes): the modern examples from the source — phones, CCTV, e-filing, portals — as concrete scenes.\n"
+      "8. RAPID-FIRE (1 minute): Ramana fires three quick questions, Priya answers, they mark each 'correct' or fix it.\n"
+      "9. EXAM CLOSE: how this is asked in Part A / B / C, the skeleton of a full-marks answer, and ONE memory hook (a mnemonic or a picture) for the whole episode. End with the 'thirty-second recap' — the whole episode in four sentences.\n\n"
       "COVER: {cover}\n\n"
-      "STYLE: conversational, story-driven, no bullet-point reading. Hosts may disagree briefly on a grey area then resolve it from the source. Use the phrase 'here is the exam point' before each key takeaway. Duration 12-15 minutes.")
+      "STYLE: story first, law second, always accurate to the source. Vary the pace — slow and quiet at the dramatic moments, quick in the rapid-fire. Say 'here is the exam point' before each key takeaway. Use everyday Indian examples (auto driver, ration shop, village panchayat, a WhatsApp forward). Duration 15-18 minutes.")
 
-TE = ("Generate this podcast entirely in TELUGU. Two hosts: a senior advocate (story-teller) and a law student (asks 'enduku?', 'ela?'). "
-      "Audience: Telugu-medium LL.B students preparing for the {exam}. Use ONLY the uploaded source ({source}), Episode {n}.\n\n"
-      "LANGUAGE RULE: Speak Telugu throughout. Keep ALL legal terms in English — section numbers, case names, and terms like {terms} — and IMMEDIATELY explain each term's meaning in simple Telugu the first time it appears.\n\n"
+TE = ("Generate this podcast entirely in TELUGU. Audience: Telugu-medium LL.B students preparing for the {exam}. Use ONLY the uploaded source ({source}), Episode {n}. Never call this a 'deep dive'.\n\n"
+      "LANGUAGE RULE: Speak natural, everyday Telugu throughout (the way friends talk, not textbook Telugu). Keep ALL legal terms in English — section numbers, case names, and terms like {terms} — and explain each term's meaning in simple Telugu the first time it appears.\n\n"
+      "HOSTS: two named people with real personalities. RAMANA garu is a senior advocate, 30 years in court, warm, dramatic, loves a story and a joke. PRIYA is a sharp final-year student with this exam next month, a little tense, keeps asking 'enduku?', 'ela?', 'idi exam lo vastunda?', and sometimes argues back. They tease each other. Real conversation, not a lecture.\n\n"
       "TOPIC: {title}\n\n"
       "STRUCTURE:\n"
-      "1. Anchor case STORY first, exactly as in the source — names, place, year, the twist. Telugu narration, 3-4 minutes, cinematic. Law comes after the story.\n"
-      "2. 'Court em cheppindi?' — the principle in one clear sentence.\n"
-      "3. Sections one by one, always saying the {old} number AND the {new} number in English (e.g. '{example_te}').\n"
-      "4. Supporting cases — case name in English, year, one-line holding in Telugu, tied back to the story.\n"
-      "5. DIGITAL angle from the source — phone, CCTV, portal, e-filing examples in everyday Telugu.\n"
-      "6. Close with EXAM tip — Part A / B / C lo ela adugutaru, answer structure.\n\n"
+      "1. COLD OPEN (first 30 seconds): start in the middle of the story — a place, a time, a person in trouble — no 'namaskaram, welcome' first. Then a short intro.\n"
+      "2. THE STORY (4-5 minutes): the anchor case as a cinema scene, exactly as in the source — names, place, year, evari side em, the twist. Voice the key lines: lawyer em argue chesadu, judge em annaru. Build to the moment of decision and STOP: Ramana asks Priya (and the listener) 'meeru judge aithe em cheptaru?' — ten seconds of guessing before the reveal.\n"
+      "3. THE PRINCIPLE: 'Court em cheppindi?' — one clear sentence, then it matters to an ordinary manishi ela.\n"
+      "4. THE LAW INSIDE THE STORY: the sections listed in the source, each tied to a moment in the story ('ikkade Section X vastundi'). For EVERY section number say the {old} number AND the {new} number in English (e.g. '{example_te}'). List laga chadavaddu.\n"
+      "5. THE OTHER CASES: supporting cases — case name in English, year, a 30-second mini-story in Telugu, holding in one line, and how it connects to the main story.\n"
+      "6. MYTH vs REALITY (1 minute): Priya says one thing students usually get wrong here; Ramana corrects it from the source.\n"
+      "7. DIGITAL ANGLE (1-2 minutes): the modern examples from the source — phone, CCTV, portal, e-filing — as small scenes in everyday Telugu.\n"
+      "8. RAPID-FIRE (1 minute): Ramana asks three quick questions, Priya answers, 'correct' or correction.\n"
+      "9. EXAM CLOSE: Part A / B / C lo ela adugutaru, full-marks answer skeleton, and ONE memory hook (mnemonic or a picture) for the whole episode. End with a 'muppai seconds recap' — the whole episode in four sentences.\n\n"
       "COVER: {cover}\n\n"
-      "STYLE: friendly, like two friends at a tea stall, but accurate to the source. Before every key takeaway say 'exam point idi'. Duration 12-15 minutes.")
+      "STYLE: story first, law second, always accurate to the source. Vary the pace — slow at the dramatic moments, fast in rapid-fire. Before every key takeaway say 'exam point idi'. Use everyday Telugu-life examples (auto anna, ration shop, village panchayat, WhatsApp forward). Duration 15-18 minutes.")
 
 en, te, rows = [], [], ["# tag\tdest   (NotebookLM download name starts with the tag; deploy.sh matches by prefix)"]
 for e in spec["episodes"]:
