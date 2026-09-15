@@ -126,3 +126,4 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
 - 02:45: CrPC Telugu now COMPLETE (01-12). B (CPC.docx selected) generating CP09, CP10; CP11 scheduled; CP12 could not be queued
   (later-slot full). B window resets 07:21. Pro daily limit resets ~19:05.
 - 03:10: cpc TE 01-10 live. B shows 2 scheduled (CP11, CP12) for after 07:21; B AI-usage limit reached until 07:21. Nothing runnable until then.
+- 07:26: B window used — generating CP11 + BK07 (Banking.docx selected), scheduled CP12 + BK08 for after 12:21. Timers: 07:50 collect, 12:23 next window, 19:08 Pro reset.
