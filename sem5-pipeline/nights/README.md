@@ -135,3 +135,9 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
 - 08:40: Krishna closed the Default-profile window I had opened (he is working in another profile: Sheets/RFC). Only the [other account]
   instance is connected → no automation possible. Do NOT keep relaunching windows while he works; wait for the Default profile's
   extension to connect (re-check timers 10:30, 12:23). B has CP11/BK07 done or finishing and CP12/BK08 queued for 12:21; Pro ~19:05.
+- 08:50 CORRECTION: after a Chrome restart the extension deviceIds are REASSIGNED — the instance now labelled "Browser 1"
+  (c3a28f5b…) is the Default/psmkreddy255 profile. Never trust a remembered deviceId: after `select_browser`, open
+  https://myaccount.google.com/ in the group's tab and read the email before touching NotebookLM (opening notebook.google.com
+  in a wrong account auto-creates a notebook). Row matching: scheduled placeholder rows also carry a "More" button whose menu
+  has only View/Delete — `__rowOf` must stop at the smallest ancestor containing exactly one "hh:mm · Deep dive" line.
+  State: cpc TE 01-11 and banking TE 01-07 live; B has CP12 + BK08 scheduled for after 12:21; Pro resets ~19:05.
