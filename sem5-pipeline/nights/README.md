@@ -127,3 +127,8 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   (later-slot full). B window resets 07:21. Pro daily limit resets ~19:05.
 - 03:10: cpc TE 01-10 live. B shows 2 scheduled (CP11, CP12) for after 07:21; B AI-usage limit reached until 07:21. Nothing runnable until then.
 - 07:26: B window used — generating CP11 + BK07 (Banking.docx selected), scheduled CP12 + BK08 for after 12:21. Timers: 07:50 collect, 12:23 next window, 19:08 Pro reset.
+- 07:58: Krishna restarted Chrome; the psmkreddy profile (and its extension instance 7fb5…) went away — only the [other account] instance
+  (c3a28f5b…) stayed connected. Chrome profile dirs (from Local State): Default = Murali / psmkreddy255@gmail.com (krishnapadala55
+  also signed in there), "Profile 1" = krishna / krishnapadala55@gmail.com, "Profile 2" = test. Reopen the right profile with:
+  `& "C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory=Default --new-window <notebook url>`
+  then wait for list_connected_browsers to show a NEW deviceId and select it (verify with myaccount.google.com before acting).
