@@ -141,3 +141,6 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   in a wrong account auto-creates a notebook). Row matching: scheduled placeholder rows also carry a "More" button whose menu
   has only View/Delete — `__rowOf` must stop at the smallest ancestor containing exactly one "hh:mm · Deep dive" line.
   State: cpc TE 01-11 and banking TE 01-07 live; B has CP12 + BK08 scheduled for after 12:21; Pro resets ~19:05.
+- 2026-09-15 09:05: git history was REWRITTEN (git filter-repo --replace-text) to remove a third party's account name and
+  force-pushed; every commit hash before this point changed, so any other clone must be re-cloned and hashes quoted in
+  older notes no longer resolve. Rule from now on: never write non-project account names/emails into this repo.
