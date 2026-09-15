@@ -117,8 +117,8 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
 
 ## 2026-09-15 early hours — Chrome profiles and window state
 - Two "Claude in Chrome" instances are connected: deviceId 7fb5bf6e-… is the profile with psmkreddy255 + krishnapadala55
-  (labelled "Browser 2"); c3a28f5b-… (labelled "psmkreddy") is a profile where only [other account] is signed in —
-  NEVER use it. Selecting it and opening notebook.google.com auto-created an empty notebook aa0fb19a under [other account]
+  (labelled "Browser 2"); c3a28f5b-… (labelled "psmkreddy") is a profile signed in to a different (non-project) Google account —
+  NEVER use it. Selecting it and opening notebook.google.com auto-created an empty notebook aa0fb19a under that other account
   (01:15) — Krishna may want to delete it. Always `select_browser 7fb5…` first, then `tabs_context_mcp`.
 - If innerWidth is 0 the group's window is minimized: restore ONLY the window whose title contains "Gemini Notebook"
   (PowerShell ShowWindow 9 + MoveWindow), then work in that window's ACTIVE tab (navigate it to whichever notebook is needed).
@@ -127,12 +127,12 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   (later-slot full). B window resets 07:21. Pro daily limit resets ~19:05.
 - 03:10: cpc TE 01-10 live. B shows 2 scheduled (CP11, CP12) for after 07:21; B AI-usage limit reached until 07:21. Nothing runnable until then.
 - 07:26: B window used — generating CP11 + BK07 (Banking.docx selected), scheduled CP12 + BK08 for after 12:21. Timers: 07:50 collect, 12:23 next window, 19:08 Pro reset.
-- 07:58: Krishna restarted Chrome; the psmkreddy profile (and its extension instance 7fb5…) went away — only the [other account] instance
+- 07:58: Krishna restarted Chrome; the psmkreddy profile (and its extension instance 7fb5…) went away — only the other-account instance
   (c3a28f5b…) stayed connected. Chrome profile dirs (from Local State): Default = Murali / psmkreddy255@gmail.com (krishnapadala55
   also signed in there), "Profile 1" = krishna / krishnapadala55@gmail.com, "Profile 2" = test. Reopen the right profile with:
   `& "C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory=Default --new-window <notebook url>`
   then wait for list_connected_browsers to show a NEW deviceId and select it (verify with myaccount.google.com before acting).
-- 08:40: Krishna closed the Default-profile window I had opened (he is working in another profile: Sheets/RFC). Only the [other account]
+- 08:40: Krishna closed the Default-profile window I had opened (he is working in another profile: Sheets/RFC). Only the other-account
   instance is connected → no automation possible. Do NOT keep relaunching windows while he works; wait for the Default profile's
   extension to connect (re-check timers 10:30, 12:23). B has CP11/BK07 done or finishing and CP12/BK08 queued for 12:21; Pro ~19:05.
 - 08:50 CORRECTION: after a Chrome restart the extension deviceIds are REASSIGNED — the instance now labelled "Browser 1"
