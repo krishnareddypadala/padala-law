@@ -132,3 +132,6 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   also signed in there), "Profile 1" = krishna / krishnapadala55@gmail.com, "Profile 2" = test. Reopen the right profile with:
   `& "C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory=Default --new-window <notebook url>`
   then wait for list_connected_browsers to show a NEW deviceId and select it (verify with myaccount.google.com before acting).
+- 08:40: Krishna closed the Default-profile window I had opened (he is working in another profile: Sheets/RFC). Only the [other account]
+  instance is connected → no automation possible. Do NOT keep relaunching windows while he works; wait for the Default profile's
+  extension to connect (re-check timers 10:30, 12:23). B has CP11/BK07 done or finishing and CP12/BK08 queued for 12:21; Pro ~19:05.
