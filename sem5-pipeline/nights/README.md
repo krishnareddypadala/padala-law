@@ -144,3 +144,4 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
 - 2026-09-15 09:05: git history was REWRITTEN (git filter-repo --replace-text) to remove a third party's account name and
   force-pushed; every commit hash before this point changed, so any other clone must be re-cloned and hashes quoted in
   older notes no longer resolve. Rule from now on: never write non-project account names/emails into this repo.
+- 09:35: Krishna: "notify me when banking and cpc are complete" → send a PushNotification once cpc TE 12/12 and banking TE 12/12 are live. Timers armed: 12:23 (B: CP12/BK08 auto-run, queue BK09-10), 19:08 (Pro: BK11-12, then insurance/media/ihr, then EN).
