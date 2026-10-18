@@ -145,3 +145,10 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   force-pushed; every commit hash before this point changed, so any other clone must be re-cloned and hashes quoted in
   older notes no longer resolve. Rule from now on: never write non-project account names/emails into this repo.
 - 09:35: Krishna: "notify me when banking and cpc are complete" → send a PushNotification once cpc TE 12/12 and banking TE 12/12 are live. Timers armed: 12:23 (B: CP12/BK08 auto-run, queue BK09-10), 19:08 (Pro: BK11-12, then insurance/media/ihr, then EN).
+
+## 2026-10-18 — resumed after a month (Krishna: "resume now and notify me when banking and cpc are done")
+- 19:20: verified profile (myaccount → psmkreddy255). B's notebook had CP12 + BK08 finished since 15 Sep, but Download now opens a
+  googleusercontent URL that returns 403 (also with ?authuser=1) — month-old artifacts of the secondary account are not downloadable
+  from this profile. Regenerated both on Pro instead. Krishna confirms Pro = 20 audio files/day.
+- 19:28: in flight on Pro: CP12TE (CPC notebook), BK08-10TE (Banking), IS01-03TE (Insurance) = 7/20. Plan: BK11-12, IS04-12, then Media 01-02;
+  PushNotification when cpc 12/12 and banking 12/12 are live.
