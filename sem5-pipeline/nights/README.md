@@ -152,3 +152,5 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   from this profile. Regenerated both on Pro instead. Krishna confirms Pro = 20 audio files/day.
 - 19:28: in flight on Pro: CP12TE (CPC notebook), BK08-10TE (Banking), IS01-03TE (Insurance) = 7/20. Plan: BK11-12, IS04-12, then Media 01-02;
   PushNotification when cpc 12/12 and banking 12/12 are live.
+- 19:32: `git push` failed with "Permission … denied to ailearnguru" — the GitHub CLI's active account had switched (it is git's credential
+  helper here). Fix: `gh auth switch --user krishnareddypadala` then push. Check `gh auth status` first whenever a push is denied.
