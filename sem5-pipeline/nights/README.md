@@ -154,3 +154,11 @@ URL form: https://notebook.google.com/notebook/<id>?authuser=<email>
   PushNotification when cpc 12/12 and banking 12/12 are live.
 - 19:32: `git push` failed with "Permission … denied to ailearnguru" — the GitHub CLI's active account had switched (it is git's credential
   helper here). Fix: `gh auth switch --user krishnareddypadala` then push. Check `gh auth status` first whenever a push is denied.
+
+## 2026-10-18 evening (Pro account, resumed ~19:30)
+- Done tonight: CP12TE, BK08-12TE (Banking Telugu 12/12 complete; CPC Telugu 12/12 complete), IS01-03TE, ML01-02TE deployed; IS04-06 and ML03-05 generating (Pro daily count 17/20 at 20:30; IS07-09 planned with the last 3).
+- Chrome lesson: background tabs in the group get frozen/discarded within minutes (JS times out after 45 s, tab IDs change on every discard, navigate times out). Working pattern = ONE worker tab that stays active; navigate it between notebooks (download tabs "Untitled" open next to it and vanish by themselves). Multiple parallel notebook tabs are not worth it; generations continue server-side anyway.
+- notebook.google.com enforces Trusted Types: `eval(await fetch(...).text())` throws EvalError. Paste `scripts/nlm_helpers.js` inline instead (file fixed tonight; its split('\n') line had been corrupted).
+- A fresh navigation + 6 s wait before every generate batch is enough; `__gen` reports `queue 0->0` on the first call even when it worked - check `__status().generating` 5 s later instead of re-issuing.
+- Rename all finished rows first, wait 8 s (no "Saving…"), THEN download one row every 7 s; sizes/durations must line up (IS01 22:55 = 44 MB, IS02 12:50 = 25 MB, IS03 18:40 = 36 MB).
+- Title → episode mapping tonight: Insurance "రాజా వాసిరెడ్డి" = IS01, "కార్టర్ వర్సెస్ బోయెమ్" = IS02, "సొంత కంపెనీ ఆస్తిపై" = IS03; Media "సుప్రీంకోర్టు చారిత్రాత్మక తీర్పులు" = ML01 (Bennett Coleman), "సకాల్ పేపర్స్" = ML02; Banking "బ్యాంకుల జాతీయకరణ" = BK11, "కాస్మోస్ బ్యాంక్" = BK12.
